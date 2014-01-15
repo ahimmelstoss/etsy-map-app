@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map-canvas { height: 100% }
+    </style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAnszT1t5ncmu-aB8CMdVESGcrb_eoo4o&sensor=false">
+    </script>
+    <script src="/javascripts/map.js"></script>
+    <script type="text/javascript">
+      var data = <%#[@etsy_mock_data.map {|c| {location:c.location, shop_name:c.shop_name, purchase_date:c.purchase_date}}].to_json%>
+    </script>
+  </head>
+  <body>
+    <!-- <div id="map-canvas"/> -->
+  </body>
+</html>
