@@ -11,4 +11,5 @@ group :development do
   gem "rack-test", "~> 0.6"
   gem 'awesome_print'
   gem 'sinatra-contrib'
+  gem 'pry'
 end
