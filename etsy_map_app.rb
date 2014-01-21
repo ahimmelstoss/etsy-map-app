@@ -67,7 +67,7 @@ class EtsyMapApp < Sinatra::Base
         @data << hash
       end
       @data
-      erb :map, :layout => false
+      erb :map
     end
   end
 

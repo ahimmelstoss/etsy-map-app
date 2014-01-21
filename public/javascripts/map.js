@@ -17,6 +17,7 @@ function codeOneAddress(datum) {
 
       var marker = new google.maps.Marker({
         map: map,
+        animation: google.maps.Animation.DROP,
         position: results[0].geometry.location
       });
       var infowindow = new google.maps.InfoWindow();
@@ -28,14 +29,21 @@ function codeOneAddress(datum) {
       })(marker, datum.title, datum.url));
 
     } else {
-      alert("Geocode was not successful for the following reason: " + status);
+      console.log("Geocode was not successful for the following reason: " + status + ". Geocoding failed for " + datum.location);
     }
   });
 } 
 
+function delayCoding(datum, delay_ms) {
+  setTimeout(function() {
+    codeOneAddress(datum);
+  }, delay_ms);
+}
+
 function codeAddresses(data) {
   for (var i = 0; i < data.length; i++) {
-    codeOneAddress(data[i]);
+    delayCoding(data[i], (i + 1) * 500);
   }
 }
+
 google.maps.event.addDomListener(window, 'load', initialize);
