@@ -46,24 +46,29 @@ class EtsyMapApp < Sinatra::Base
   end
 
   get "/map" do
-    # TODO: redirect if user is not authenticated
-    access = {
-      :access_token => session[:access_token], 
-      :access_secret => session[:access_secret]
-    }
+    if session[:access_token].nil? && session[:access_secret].nil?
+      redirect '/'
+    else
+      access = {
+        :access_token => session[:access_token], 
+        :access_secret => session[:access_secret]
+      }
 
-    @user = Etsy.myself(access[:access_token], access[:access_secret])
-    @user = Etsy::Request.get('/users/' + @user.id.to_s, access.merge(:limit => 1)).to_hash["results"]
-    @transactions = Etsy::Request.get('/users/' + @user[0]['user_id'].to_s + '/transactions', access.merge(:limit => 2)).to_hash["results"]
-    @data = []
-    @transactions.each do |transaction|
-      hash = {:title => transaction['title']}
-      sellers_profile = Etsy::Request.get('/users/'+transaction['seller_user_id'].to_s+'/profile', access.merge(:limit => 2)).to_hash["results"]
-      hash[:seller_user_id] = transaction['seller_user_id']
-      hash[:location] = "#{sellers_profile[0]['city']}, #{sellers_profile[0]['region']}, #{Etsy::Request.get('/countries/' + sellers_profile[0]['country_id'].to_s, access.merge(:limit => 1)).to_hash["results"][0]['name'].to_s}"
-      @data << hash
+      @user = Etsy.myself(access[:access_token], access[:access_secret])
+      @user = Etsy::Request.get('/users/' + @user.id.to_s, access.merge(:limit => 1)).to_hash["results"]
+      @transactions = Etsy::Request.get('/users/' + @user[0]['user_id'].to_s + '/transactions', access.merge(:limit => 20)).to_hash["results"]
+      @data = []
+      @transactions.each do |transaction|
+        hash = {:title => transaction['title']}
+        sellers_profile = Etsy::Request.get('/users/'+transaction['seller_user_id'].to_s+'/profile', access.merge(:limit => 20)).to_hash["results"]
+        hash[:seller_user_id] = transaction['seller_user_id']
+        hash[:location] = "#{sellers_profile[0]['city']}, #{sellers_profile[0]['region']}, #{Etsy::Request.get('/countries/' + sellers_profile[0]['country_id'].to_s, access.merge(:limit => 1)).to_hash["results"][0]['name'].to_s}"
+        hash[:url] = transaction['url']
+        @data << hash
+      end
+      @data
+      erb :map, :layout => false
     end
-    erb :map, :layout => false
   end
 
 end

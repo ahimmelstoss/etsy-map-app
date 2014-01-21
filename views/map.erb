@@ -12,10 +12,14 @@
     </script>
     <script src="/javascripts/map.js"></script>
     <script type="text/javascript">
-      var data = <%#[@etsy_mock_data.map {|c| {location:c.location, shop_name:c.shop_name, purchase_date:c.purchase_date}}].to_json%>
+      var data = <%= @data.to_json %>;
+      function codeAddressesData() {
+        codeAddresses(data);
+      }
+      google.maps.event.addDomListener(window, 'load', codeAddressesData);
     </script>
   </head>
   <body>
-    <!-- <div id="map-canvas"/> -->
+    <div id="map-canvas"/>
   </body>
 </html>
