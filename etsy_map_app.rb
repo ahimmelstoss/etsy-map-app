@@ -4,10 +4,6 @@ class EtsyMapApp < Sinatra::Base
 
   enable :sessions
 
-  configure :development do
-    register Sinatra::Reloader
-  end
-
   before do
     Etsy.api_key = ENV['API_KEY']
     Etsy.api_secret = ENV['SECRET_KEY']

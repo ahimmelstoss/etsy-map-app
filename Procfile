@@ -1,1 +1,1 @@
-web: bundle exec ruby etsy_map_app.rb -p $PORT
+web: bundle exec rackup config.ru -p $PORT
