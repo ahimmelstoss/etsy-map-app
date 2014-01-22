@@ -9,8 +9,8 @@ class EtsyMapApp < Sinatra::Base
   end
 
   before do
-    Etsy.api_key = API_KEY
-    Etsy.api_secret = SECRET_KEY
+    Etsy.api_key = ENV['API_KEY']
+    Etsy.api_secret = ENV['SECRET_KEY']
     Etsy.environment = :production
     Etsy.protocol = 'https'
     Etsy.callback_url = 'http://etsy-map-app.herokuapp.com/authorize'
