@@ -1,5 +1,3 @@
-require 'keys'
-
 class EtsyMapApp < Sinatra::Base
 
   set :public_folder => "public", :static => true
