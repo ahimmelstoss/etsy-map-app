@@ -13,7 +13,7 @@ html, body {
 .index-total {
   height: 100%;
   width: auto;
-  background: url("/images/map.jpg") no-repeat center center fixed ; 
+  background: url("/images/ourmap.jpg") no-repeat center center fixed ; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -48,18 +48,10 @@ html, body {
   width: 100%;
 }
 
-.footer-text {
-  color: #8F9E9F;
-}
-
-.twitter {
-  margin-left: 10px;
-}
-
 a {
   color: #5CB85C;
 }
 
-.btn a {
-  color: white;
+a:hover {
+  color: ;
 }
