@@ -8,6 +8,9 @@ else
   Bundler.require(:default)
 end
 
+require 'sass/plugin/rack'
+use Sass::Plugin::Rack
+
 # Local config
 require "find"
 

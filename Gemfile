@@ -4,6 +4,7 @@ source "https://rubygems.org/"
 gem "sinatra", "~> 1.4"
 gem "json"
 gem "etsy"
+gem "sass"
 
 group :development do
   gem "rake", "~> 10.0"

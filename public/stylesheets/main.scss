@@ -1,0 +1,66 @@
+$primary-height: 100%;
+$primary-bg-color: rgba(245, 245, 245, 0.8);
+
+@mixin background-size($size) {
+  -webkit-background-size: $size;
+  -moz-background-size: $size;
+  -o-background-size: $size;
+  background-size: $size;
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -o-border-radius: $radius;
+  border-radius: $radius;
+}
+
+html, body {
+  margin: 0;
+  width: 100%;
+  height: $primary-height;
+  min-height: $primary-height;
+}
+
+#map-canvas {
+  height: $primary-height;
+}
+
+.index-total {
+  height: $primary-height;
+  width: auto;
+  background: url("../images/ourmap.jpg") no-repeat center center fixed; 
+  @include background-size(cover);
+}
+
+.about-custom {
+  background-color: $primary-bg-color;
+  position: absolute;
+  left: 30%;
+  top: 20%;
+}
+
+.jumbotron {
+  @include border-radius(5px);
+  width: 500px;
+}
+
+.button-centered {
+  text-align: center;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  margin-top: -60px;
+  height: 60px;
+  clear: both;
+  padding-top: 20px;
+  background-color: $primary-bg-color;
+  width: 100%;
+  a {
+  color: #5CB85C;
+  &:hover { color: #3d8b3d; }
+  }
+}
